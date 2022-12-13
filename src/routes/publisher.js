@@ -43,11 +43,10 @@ router.get("/publisher/view", async(req, res, next) => {
 
 router.post("/publisher/create", async(req, res) => {
   try {
-    const { name, domain } = req.body;
+    const name = req.body.name;
 
     await Publisher.create({
-      name: name,
-      domain: domain
+      name: name
     });
 
     return res.send();

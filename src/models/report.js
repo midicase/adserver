@@ -49,11 +49,6 @@ const schema = new mongoose.Schema({
     default: 0,
     required: true
   },
-  clicks: {
-    type: Number,
-    default: 0,
-    required: true
-  },
   date: {
     type: String,
     default: "",

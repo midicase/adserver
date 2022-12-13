@@ -19,27 +19,14 @@ const schema = new mongoose.Schema({
     default: "",
     required: true
   },
-  width: {
-    type: Number,
-    default: 300,
-    required: true
-  },
-  height: {
-    type: Number,
-    default: 250,
-    required: true
-  },
-  location: {
-    type: String,
-    default: ""
-  },
   creative_url: {
     type: String,
     default: ""
   },
-  html_target: {
-    type: String,
-    default: ""
+  duration: {
+    type: Number,
+    default: 30,
+    required: true
   }
 });
 

@@ -20,16 +20,13 @@ export default async() => {
     && !adItems.length && !campaignAssignments.length
     && !placements.length) {
     const publisher = await Publisher.create({ name: "Default Publisher" });
-    const zone = await Zone.create({ name: "Default Zone", publisher: publisher.id });
+    const zone = await Zone.create({ name: "Default Zone", publisher: publisher.id, avails: 4 });
     const advertiser = await Advertiser.create({ name: "Default Advertiser" });
     const campaign = await Campaign.create({ name: "Default Campaign", advertiser: advertiser.id });
     const adItem = await AdItem.create({
       name: "Default Ad Item",
-      width: 300,
-      height: 250,
-      location: "http://kijepark.com",
-      creative_url: "https://i.ibb.co/kqR8Z8r/banner.jpg",
-      html_target: "_blank"
+      duration: 30,
+      creative_url: "https://monitor.d2dtechnologies.com/segment/hls/ad.mp2/index.m3u8"
     });
     const campaignAssignment = await CampaignAssignment.create({
       advertisement: {

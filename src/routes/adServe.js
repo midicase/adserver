@@ -13,9 +13,11 @@ const router = express.Router();
 // Provides ads to publishers
 router.get("/adserve", async(req, res) => {
   try {
-    const type = req.query.type;
+//    const type = req.query.type;
+    const type = "json";
     const zoneID = parseInt(req.query.zone_id);
-
+    // TODO: duration
+    
     const zone = await Zone.retrieve({ id: zoneID });
     if (!zone) {
       return res.send("No Zone Found");
@@ -46,14 +48,16 @@ router.get("/adserve", async(req, res) => {
       const campaignAssignment = campaignAssignments[i];
       const adItem = await AdItem.retrieve({ id: campaignAssignment.advertisement.id });
 
-      // Push only ad that has same dimension with Zone's
-      if (zone.width === adItem.width && zone.height === adItem.height) {
+      // Push only ad that has same dimension and duration with Zone's
+      //if (zone.width === adItem.width && zone.height === adItem.height && zone.duration === adItem.duration) {
         adItems.push(adItem);
-      }
+      //}
     }
 
     // Also need to figure out the most eligible one but
     // use Random() instead
+    //TODO: check reports for impression count.
+    
     const adItem = adItems[Math.floor(Math.random() * adItems.length)];
     const adItemID = adItem.id;
     let response = null;
@@ -108,11 +112,13 @@ router.get("/adserve", async(req, res) => {
       }
       case "json": {
         response = {
-          width: adItem.width,
-          height: adItem.height,
-          target: adItem.html_target,
-          redirect_url: redirectURL,
-          image_url: adItem.creative_url
+//          width: adItem.width,
+//          height: adItem.height,
+          duration: adItem.duration,
+//          target: adItem.html_target,
+//          redirect_url: redirectURL,
+//          image_url: adItem.creative_url
+          ad_url: adItem.creative_url
         }
 
         res.send(response);
@@ -160,7 +166,8 @@ router.get("/redirect", async(req, res) => {
     await Report.create(query);
   }
 
-  return res.redirect(adItem.location);
+//  return res.redirect(adItem.location);
+  return res.redirect("complete");
 });
 
 export default router;

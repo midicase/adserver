@@ -54,15 +54,13 @@ router.get("/zone/view", async(req, res, next) => {
 router.post("/zone/create", async(req, res) => {
   try {
     const publisherID = req.body.publisher_id;
-    const { name, size } = req.body;
-    const width = size.split("x")[0];
-    const height = size.split("x")[1];
-
+    const name = req.body.name;
+    const avails = req.body.avails;
+    
     await Zone.create({
       publisher: publisherID,
       name: name,
-      width: width,
-      height: height
+      avails: avails
     });
 
     return res.send();

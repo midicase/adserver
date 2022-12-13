@@ -418,7 +418,6 @@ if (adItemCreateModal) {
         link: adItemLink,
         image_url: adItemImageUrl,
         size: adItemSize,
-        html_target: adItemTarget
       },
       success: function(campaigns, status, xhr) {
         return window.location.reload(); 

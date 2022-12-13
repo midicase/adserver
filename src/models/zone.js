@@ -19,14 +19,9 @@ const schema = new mongoose.Schema({
     default: "",
     required: true
   },
-  width: {
+  avails: {
     type: Number,
-    default: 300,
-    required: true
-  },
-  height: {
-    type: Number,
-    default: 250,
+    default: 0,
     required: true
   },
   publisher: {

@@ -142,8 +142,7 @@ router.post("/campaign/zone/assign", async(req, res) => {
       });
       
       adItemSizes.push({
-        width: adItem.width,
-        height: adItem.height
+        duration: adItem.duration
       });
     }
 
@@ -156,11 +155,11 @@ router.post("/campaign/zone/assign", async(req, res) => {
       for (let t=0; t<adItemSizes.length; t+=1) {
         const adItemSize = adItemSizes[t];
 
-        if (zone.width === adItemSize.width && zone.height === adItemSize.height) {
+//        if (zone.width === adItemSize.width && zone.height === adItemSize.height && zone.duration === adItem.duration) {
           if (eligibleZones.indexOf(zone) == -1) {
             eligibleZones.push(zone);
           }
-        }
+  //      }
       }
     }
 
@@ -173,7 +172,8 @@ router.post("/campaign/zone/assign", async(req, res) => {
         id: eligibleZone.id,
         name: eligibleZone.name,
         publisher: publisher.name,
-        size: eligibleZone.width + "x" + eligibleZone.height
+//        size: eligibleZone.width + "x" + eligibleZone.height,
+        duration: duration
       });
     }
 

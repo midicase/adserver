@@ -9,20 +9,14 @@ router.post("/aditem/create", async(req, res) => {
   try {
     const campaignID = req.body.campaign_id;
     const name = req.body.name;
-    const location = req.body.link;
     const creativeUrl = req.body.image_url;
-    const size = req.body.size;
-    const width = size.split("x")[0];
-    const height = size.split("x")[1];
-    const htmlTarget = req.body.html_target;
+//    const size = req.body.size;
+    const duration = req.body.duration;
 
     const adItem = await AdItem.create({
       name: name,
-      location: location,
-      creative_url: creativeUrl,
-      width: width,
-      height: height,
-      html_target: htmlTarget
+      duration : duration,
+      creative_url: creativeUrl
     });
 
     await CampaignAssignment.create({

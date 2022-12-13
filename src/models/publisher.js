@@ -19,10 +19,6 @@ const schema = new mongoose.Schema({
     default: "",
     required: true
   },
-  domain: {
-    type: String,
-    default: ""
-  }
 });
 
 // add unique id
