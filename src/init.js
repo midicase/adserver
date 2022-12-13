@@ -20,7 +20,13 @@ export default async() => {
     && !adItems.length && !campaignAssignments.length
     && !placements.length) {
     const publisher = await Publisher.create({ name: "Default Publisher" });
-    const zone = await Zone.create({ name: "Default Zone", publisher: publisher.id, avails: 4 });
+    const zone = await Zone.create({
+    	name: "Default Zone",
+    	publisher: publisher.id,
+    	avails: 4,
+    	serial: 40039,
+    	stream_index: 1
+	});
     const advertiser = await Advertiser.create({ name: "Default Advertiser" });
     const campaign = await Campaign.create({ name: "Default Campaign", advertiser: advertiser.id });
     const adItem = await AdItem.create({

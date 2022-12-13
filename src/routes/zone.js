@@ -56,11 +56,15 @@ router.post("/zone/create", async(req, res) => {
     const publisherID = req.body.publisher_id;
     const name = req.body.name;
     const avails = req.body.avails;
+    const serial = req.body.serial;
+    const stream_index = req.body.stream_index;
     
     await Zone.create({
       publisher: publisherID,
       name: name,
-      avails: avails
+      avails: avails,
+      serial: serial,
+      stream_index: stream_index
     });
 
     return res.send();

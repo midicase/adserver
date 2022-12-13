@@ -15,14 +15,16 @@ router.get("/adserve", async(req, res) => {
   try {
 //    const type = req.query.type;
     const type = "json";
-    const zoneID = parseInt(req.query.zone_id);
+    const serial = parseInt(req.query.serial);
+    const stream_index = parseInt(req.query.stream_index);
     // TODO: duration
     
-    const zone = await Zone.retrieve({ id: zoneID });
+    const zone = await Zone.retrieve({ "serial": serial, "stream_index": stream_index });
     if (!zone) {
       return res.send("No Zone Found");
     }
-
+    const zoneID = zone.id;
+    
     const placements = await Placement.list({ "zone.id": zone.id });
     if (!placements.length) {
       return res.send("No Placements Found");
