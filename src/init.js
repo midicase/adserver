@@ -25,6 +25,7 @@ export default async() => {
     	publisher: publisher.id,
     	avails: 4,
     	serial: 40039,
+    	input_index: 1,
     	stream_index: 1
 	});
     const advertiser = await Advertiser.create({ name: "Default Advertiser" });

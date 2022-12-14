@@ -16,10 +16,11 @@ router.get("/adserve", async(req, res) => {
 //    const type = req.query.type;
     const type = "json";
     const serial = parseInt(req.query.serial);
+    const input_index = parseInt(req.query.input_index);  // likely always one
     const stream_index = parseInt(req.query.stream_index);
     // TODO: duration
     
-    const zone = await Zone.retrieve({ "serial": serial, "stream_index": stream_index });
+    const zone = await Zone.retrieve({ "serial": serial, "input_index": input_index, "stream_index": stream_index });
     if (!zone) {
       return res.send("No Zone Found");
     }

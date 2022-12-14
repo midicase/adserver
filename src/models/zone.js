@@ -34,6 +34,11 @@ const schema = new mongoose.Schema({
     default: 0,
     required: true
   },
+  input_index: {
+    type: Number,
+    default: 0,
+    required: true
+  },
   stream_index: {
     type: Number,
     default: 0,
@@ -48,6 +53,6 @@ schema.plugin(mongooseSequence, {
   collection_name: "ids"
 });
 
-schema.index({ serial: 1, stream_index: 1 }, { unique: true })
+schema.index({ serial: 1, input_index: 1, stream_index: 1 }, { unique: true })
 
 export default mongoose.model("zone", schema);
