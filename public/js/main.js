@@ -33,7 +33,8 @@ var zoneTagModal = document.getElementById("zone-tag-modal");
 if (zoneTagButton) {
   // Updates zone tag from textarea
   function updateClipboard() {
-    var type = zoneTagTypeSelect.options[zoneTagTypeSelect.selectedIndex].value;
+    var type = "json";
+//    var type = zoneTagTypeSelect.options[zoneTagTypeSelect.selectedIndex].value;
     var zoneID = new URLSearchParams(window.location.search).get("zone_id");
     var host = "http://" + window.location.hostname + ((window.location.port) ? (":" + window.location.port) : "");
     var zoneWidth = zoneTagModal.getAttribute("data-zone-width");
@@ -57,7 +58,7 @@ if (zoneTagButton) {
       }
       break;
       case "json": {
-        zoneTagArea.innerHTML = host + '/adserve?zone_id='+zoneID+'&type=json';
+        zoneTagArea.innerHTML = host + '/adserve?serial='+9999+'&stream_index=1&input_index=1';
       }
       break;
     }
@@ -74,19 +75,19 @@ if (zoneTagButton) {
 // - create
 var publisherCreateButton = document.getElementById("publisher-create-button");
 var publisherNameInput = document.getElementById("publisher-name-input");
-var publisherDomainInput = document.getElementById("publisher-domain-input");
+//var publisherDomainInput = document.getElementById("publisher-domain-input");
 
 if (publisherCreateButton) {
   publisherCreateButton.addEventListener("click", function() {
     var publisherName = publisherNameInput.value;
-    var publisherDomain = publisherDomainInput.value;
+//    var publisherDomain = publisherDomainInput.value;
 
     $.ajax({
       method: "POST",
       url: "/publisher/create",
       data: {
-        name: publisherName,
-        domain: publisherDomain
+        name: publisherName
+//        domain: publisherDomain
       },
       success: function(data, status, xhr) {
         return window.location.reload();
@@ -131,12 +132,18 @@ if (publisherDeleteButton) {
 // - create
 var zoneCreateButton = document.getElementById("zone-create-button");
 var zoneNameInput = document.getElementById("zone-name-input");
-var zoneSizeSelect = document.getElementById("zone-size-select");
+var zoneSerial = document.getElementById("zone-serial-input");
+var zoneInputIdx = document.getElementById("zone-input-idx-input");
+var zoneStreamIdx = document.getElementById("zone-stream-idx-input");
+var zoneAvails = document.getElementById("zone-avails-input");
 
 if (zoneCreateButton) {
   zoneCreateButton.addEventListener("click", function() {
     var zoneName = zoneNameInput.value;
-    var zoneSize = zoneSizeSelect.options[zoneSizeSelect.selectedIndex].value;
+    var serial = parseInt(zoneSerial.value);
+    var input = parseInt(zoneInputIdx.value);
+    var stream = parseInt(zoneStreamIdx.value);
+    var avails = parseInt(zoneAvails.value);
     var publisherID = new URLSearchParams(window.location.search).get("publisher_id");
 
     $.ajax({
@@ -145,7 +152,11 @@ if (zoneCreateButton) {
       data: {
         publisher_id: publisherID,
         name: zoneName,
-        size: zoneSize
+        serial: serial,
+        input_index: input,
+        stream_index: stream,
+        avails: avails
+        
       },
       success: function(data, status, xhr) {
         return window.location.reload();
@@ -398,16 +409,16 @@ var adItemCreateButton = document.getElementById("ad-item-create-button");
 if (adItemCreateModal) {
   var campaignID = new URLSearchParams(window.location.search).get("campaign_id");
   var adItemNameInput = document.getElementById("ad-item-name-input");
-  var adItemLinkInput = document.getElementById("ad-item-link-input");
+//  var adItemLinkInput = document.getElementById("ad-item-link-input");
   var adItemImageUrlInput = document.getElementById("ad-item-image-url-input");
-  var adItemSizeSelect = document.getElementById("ad-item-size-select");
+//  var adItemSizeSelect = document.getElementById("ad-item-size-select");
 
   adItemCreateButton.addEventListener("click", function() {
     var adItemName = adItemNameInput.value;
-    var adItemLink = adItemLinkInput.value;
+//    var adItemLink = adItemLinkInput.value;
     var adItemImageUrl = adItemImageUrlInput.value;
-    var adItemSize = adItemSizeSelect.options[adItemSizeSelect.selectedIndex].value;
-    var adItemTarget = document.querySelector('input.uk-radio:checked').value || "";
+//    var adItemSize = adItemSizeSelect.options[adItemSizeSelect.selectedIndex].value;
+//    var adItemTarget = document.querySelector('input.uk-radio:checked').value || "";
 
     $.ajax({
       method: "POST",
@@ -415,9 +426,9 @@ if (adItemCreateModal) {
       data: {
         campaign_id: campaignID,
         name: adItemName,
-        link: adItemLink,
+//        link: adItemLink,
         image_url: adItemImageUrl,
-        size: adItemSize,
+//        size: adItemSize,
       },
       success: function(campaigns, status, xhr) {
         return window.location.reload(); 
@@ -570,15 +581,6 @@ if (chart) {
         borderColor: 'rgba(205,215,223,0.7)',
         pointBorderColor: "rgba(205,215,223)",
         pointBackgroundColor: "rgba(205,215,223)",
-        pointBorderWidth: 3,
-        borderWidth: 1
-      },{
-        label: "clicks",
-        data: reports.clicks,
-        backgroundColor: 'rgba(232,230,255,0.2)',
-        borderColor: 'rgba(198,192,255,0.7)',
-        pointBorderColor: "rgba(198,192,255)",
-        pointBackgroundColor: "rgba(198,192,255)",
         pointBorderWidth: 3,
         borderWidth: 1
       }]

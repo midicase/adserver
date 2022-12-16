@@ -19,14 +19,33 @@
     </div>
     <div class="uk-form-horizontal">
       <div class="uk-margin">
-        <label class="uk-form-label" for="zone-size-select"> Size </label>
+        <label class="uk-form-label" for="zone-serial-input"> Serial </label>
         <div class="uk-form-controls">
-          <select class="uk-select" id="zone-size-select">
-            <option disabled=""> IAB Core Ad Units: </option>
-            <option value="300x250"> 300x250 - Medium Rectangle </option>
-            <option value="180x150"> 180x150 - Rectangle </option>
-            <option value="728x90"> 728x90 - Leaderboard </option>
-          </select>
+          <input class="uk-input" id="zone-serial-input" type="text" placeholder="">
+        </div>
+      </div>
+    </div>
+    <div class="uk-form-horizontal">
+      <div class="uk-margin">
+        <label class="uk-form-label" for="zone-input-idx-input"> Input </label>
+        <div class="uk-form-controls">
+          <input class="uk-input" id="zone-input-idx-input" type="text" value="1" placeholder="" readonly>
+        </div>
+      </div>
+    </div>
+    <div class="uk-form-horizontal">
+      <div class="uk-margin">
+        <label class="uk-form-label" for="zone-stream-idx-input"> Stream </label>
+        <div class="uk-form-controls">
+          <input class="uk-input" id="zone-stream-idx-input" type="text" placeholder="">
+        </div>
+      </div>
+    </div>
+    <div class="uk-form-horizontal">
+      <div class="uk-margin">
+        <label class="uk-form-label" for="zone-avails-input"> Avails </label>
+        <div class="uk-form-controls">
+          <input class="uk-input" id="zone-avails-input" type="text" placeholder="">
         </div>
       </div>
     </div>
@@ -42,7 +61,10 @@
       <tr>
         <th class="uk-table-shrink"></th>
         <th class="uk-table-shrink"> Name </th>
-        <th class="uk-table-shrink"> Size </th>
+        <th class="uk-table-shrink"> Serial </th>
+        <th class="uk-table-shrink"> Input </th>
+        <th class="uk-table-shrink"> Stream </th>
+        <th class="uk-table-shrink"> Avails </th>
         <th class="uk-table-shrink"> Campaigns </th>
       </tr>
     </thead>

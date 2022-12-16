@@ -63,7 +63,10 @@ export default () => {
       html += "<tr data-zone-id=" + zone.id + ">";
       html += "  <td> <input class='uk-checkbox' type='checkbox'></td> </td>";
       html += "  <td class='uk-text-nowrap'> " + zone.name + " </td>";
-      html += "  <td class='uk-text-nowrap'> " + (zone.width + "x" + zone.height) + " </td>";
+      html += "  <td class='uk-text-nowrap'> " + zone.serial + " </td>";
+      html += "  <td class='uk-text-nowrap'> " + zone.input_index + " </td>";
+      html += "  <td class='uk-text-nowrap'> " + zone.stream_index + " </td>";
+      html += "  <td class='uk-text-nowrap'> " + zone.avails + " </td>";
       html += "  <td class='uk-text-nowrap'> " + zone.placements.length + " </td>";
       html += "</tr>"
     }
@@ -185,7 +188,6 @@ export default () => {
       html += "  <td> <input class='uk-checkbox' type='checkbox'></td> </td>";
       html += "  <td class='uk-text-nowrap'> " + adItem.name + " </td>";
       html += "  <td class='uk-text-nowrap'> " + adItem.total_impressions + " </td>";
-      html += "  <td class='uk-text-nowrap'> " + adItem.clicks + " </td>";
       html += "</tr>"
     }
 

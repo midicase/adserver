@@ -24,7 +24,7 @@ export default async() => {
     	name: "Default Zone",
     	publisher: publisher.id,
     	avails: 4,
-    	serial: 40039,
+    	serial: 40009,
     	input_index: 1,
     	stream_index: 1
 	});
