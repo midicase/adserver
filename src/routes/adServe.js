@@ -22,13 +22,13 @@ router.get("/adserve", async(req, res) => {
     
     const zone = await Zone.retrieve({ "serial": serial, "input_index": input_index, "stream_index": stream_index });
     if (!zone) {
-      return res.send("No Zone Found");
+      return res.status(204).send("No Zone Found");
     }
     const zoneID = zone.id;
     
     const placements = await Placement.list({ "zone.id": zone.id });
     if (!placements.length) {
-      return res.send("No Placements Found");
+      return res.status(204).send("No Placements Found");
     }
 
     // Usually each Placement have own their priorities
@@ -40,7 +40,7 @@ router.get("/adserve", async(req, res) => {
 
     const campaign = await Campaign.retrieve({ id: placement.advertisement.id });
     if (!campaign) {
-      return res.send("No Campaign Found");
+      return res.status(204).send("No Campaign Found");
     }
     const campaignID = campaign.id;
 
