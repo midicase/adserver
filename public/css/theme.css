@@ -240,7 +240,7 @@ pre code {
 }
 
 ::selection {
-  background: #39f;
+  background: #566676;
   color: #fff;
   text-shadow: none
 }
@@ -427,7 +427,7 @@ template {
 }
 
 .tm-navbar-container:not(.uk-navbar-transparent) {
-  background: linear-gradient(to left, #28a5f5, #1e87f0);
+  background: #566676;
 }
 
 .uk-logo {
@@ -487,9 +487,9 @@ template {
   }
 }
 
-.tm-navbar-container:not(.uk-navbar-transparent) {
-  background: linear-gradient(to left, #28a5f5, #1e87f0)
-}
+#.tm-navbar-container:not(.uk-navbar-transparent) {
+#  background: linear-gradient(to left, #28a5f5, #1e87f0)
+#}
 
 .tm-navbar-container .uk-navbar-nav>li>a,.tm-navbar-container .uk-navbar-item:not(.uk-logo),.tm-navbar-container .uk-navbar-toggle {
   height: 70px;
