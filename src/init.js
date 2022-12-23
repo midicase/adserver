@@ -19,19 +19,19 @@ export default async() => {
     && !advertisers.length && !campaigns.length
     && !adItems.length && !campaignAssignments.length
     && !placements.length) {
-    const publisher = await Publisher.create({ name: "Default Publisher" });
+    const publisher = await Publisher.create({ name: "D2D Publisher" });
     const zone = await Zone.create({
-    	name: "Default Zone",
+    	name: "MG",
     	publisher: publisher.id,
     	avails: 4,
     	serial: 40009,
     	input_index: 1,
     	stream_index: 1
 	});
-    const advertiser = await Advertiser.create({ name: "Default Advertiser" });
-    const campaign = await Campaign.create({ name: "Default Campaign", advertiser: advertiser.id });
+    const advertiser = await Advertiser.create({ name: "Acme Advertiser" });
+    const campaign = await Campaign.create({ name: "Toxic Campaign", advertiser: advertiser.id });
     const adItem = await AdItem.create({
-      name: "Default Ad Item",
+      name: "Xmas 2022 Ad",
       duration: 30,
       creative_url: "https://monitor.d2dtechnologies.com/segment/hls/ad.mp2/index.m3u8"
     });
@@ -52,5 +52,39 @@ export default async() => {
         type: campaign.object
       }
     });
+    const zone2 = await Zone.create({
+    	name: "GC1",
+    	publisher: publisher.id,
+    	avails: 4,
+    	serial: 40007,
+    	input_index: 1,
+    	stream_index: 1
+	});
+    const placement2 = await Placement.create({
+        zone: {
+          id: zone2.id
+        },
+        advertisement: {
+          id: campaign.id,
+          type: campaign.object
+        }
+      });
+    const zone3 = await Zone.create({
+    	name: "GC2",
+    	publisher: publisher.id,
+    	avails: 4,
+    	serial: 30220,
+    	input_index: 1,
+    	stream_index: 1
+	});
+    const placement3 = await Placement.create({
+        zone: {
+          id: zone3.id
+        },
+        advertisement: {
+          id: campaign.id,
+          type: campaign.object
+        }
+      });
   }
 }
